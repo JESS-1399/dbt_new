@@ -22,6 +22,9 @@ sources:
       - name: product
         identifier: raw_gz_product
         description: products of Greenweez
+        tests:
+          - unique
+          - not_null
         columns:
           - name: products_id
             description: primary key of the table
@@ -30,6 +33,9 @@ sources:
       - name: ships
         identifier: raw_gz_ship
         description: ship of Greenweez
+        tests:
+          - unique
+          - not_null
         columns:
           - name: orders_id
             description: primary key of the table
