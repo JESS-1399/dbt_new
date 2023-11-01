@@ -13,7 +13,11 @@ sources:
             description: the date of purchase
           - name: orders_id
             description: foreign key to ship
-          - name: products_id
+          - name: concat(orders_id, '-', pdt_id)
+            tests:
+              - not_null
+              - unique
+              
             description: foreign key to product
           - name: revenue
             description: the amount paid by the customer to purchase the product, revenue = quantity * selling_price
@@ -22,23 +26,23 @@ sources:
       - name: product
         identifier: raw_gz_product
         description: products of Greenweez
-        tests:
-          - unique
-          - not_null
         columns:
           - name: products_id
             description: primary key of the table
+            tests:
+            - unique
+            - not_null
           - name: purchase_price
             description: the purchase price of the product
       - name: ships
         identifier: raw_gz_ship
         description: ship of Greenweez
-        tests:
-          - unique
-          - not_null
         columns:
           - name: orders_id
             description: primary key of the table
+            tests:
+            - unique
+            - not_null
           - name: shipping_fee
             description: the price the customer pays for shipping
           - name: logcost
